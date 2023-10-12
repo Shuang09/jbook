@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "@monaco-editor/react": "3.7.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -18,7 +19,7 @@
     "axios": "^1.5.1",
     "bulmaswatch": "^0.8.1",
     "esbuild-wasm": "0.8.27",
-    "immer": "^10.0.3",
+    "immer": "^8.0.0",
     "localforage": "^1.10.0",
     "monaco-editor": "^0.21.3",
     "prettier": "^2.8.8",
@@ -29,7 +30,7 @@
     "react-scripts": "5.0.1",
     "redux": "4.2.1",
     "redux-thunk": "2.4.2",
-    "typescript": "^4.9.5",
+    "typescript": "^3.2.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

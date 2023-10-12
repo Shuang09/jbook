@@ -1,6 +1,35 @@
-const CellList: React.FC = () => {
-    return <div>Cell List</div>
+import './cell-list-item.css';
+import { Cell } from "../state";
+import CodeCell from "./code-cell";
+import TextEditor from "./text-editor";
+import ActionBar from "./action-bar";
 
+interface CellListItemPropd {
+    cell: Cell
+}
+
+const CellListItem: React.FC<CellListItemPropd> = ({cell}) => {
+    let child: JSX.Element;
+    if (cell.type === 'code'){
+        child = <>
+            <div className="action-bar-wrapper">
+                <ActionBar id={cell.id} />
+            </div>
+            <CodeCell cell = {cell} />
+        </>
+    } else {
+        child = <>
+        <TextEditor cell ={cell} />
+        <ActionBar id={cell.id} />
+        </>
+        
+    }
+
+    return (
+        <div className="cell-list-item">
+        {child}
+        </div>
+    );
 };
 
-export default CellList;
+export default CellListItem;
