@@ -1,13 +1,15 @@
+import { Dispatch } from "react";
 import { ActionType } from "../action-types";
 import {
     Action,
     UpdateCellAction,
     DeleteCellAction,
     MoveCellAction,
-    InsertCellBeforeAction,
-    Direction
+    InsertCellAfterAction,
+    Direction,
 } from "../actions";
 import { CellTypes } from "../cell";
+import bundle from '../../bundler';
 
 export const updateCell = (id: string, content: string): UpdateCellAction => {
     return {
@@ -36,12 +38,37 @@ export const moveCell = (id: string, direction: Direction): MoveCellAction => {
     };
 };
 
-export const insertCellBefore = (id: string | null, cellType: CellTypes): InsertCellBeforeAction => {
+export const insertCellAfter = (id: string | null, cellType: CellTypes): InsertCellAfterAction => {
     return {
-        type: ActionType.INSERT_CELL_BEFORE,
+        type: ActionType.INSERT_CELL_AFTER,
         payload: {
             id,
             type: cellType
         }
     };
+};
+
+export const createBundle = (cellId: string, input: string) => {
+    return async (dispatch: Dispatch<Action>) => {
+        dispatch({
+            type: ActionType.BUNDLE_START,
+            payload: {
+                cellId,
+            },
+        });
+
+        const result =await bundle(input);
+
+        dispatch({
+            type: ActionType.BUNDLE_COMPLETE,
+            payload: {
+                cellId,
+                bundle: {
+                    code: result.code,
+                    err: result.err,
+                },
+            },
+        });
+    };
+
 };
